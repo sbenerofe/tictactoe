@@ -9,7 +9,8 @@ let gameActive = true;
 const player1_Symbol = '🍅';
 const player2_Symbol = '🌵';
 let currentPlayer = player1_Symbol;
-let gameBoard = ['', '', '', '', '', '', '', '', ''];
+const clearBoard = ['', '', '', '', '', '', '', '', ''];
+let gameBoard = clearBoard;
 
 const winningMessage = () => `${currentPlayer} wins!`;
 const tieMessage = "It's a tie";
@@ -29,6 +30,7 @@ const winningCombos = [
 
 // main public function for gameplay
 const handleClick = (e) => {
+  console.log(e);
   const clickedSquare = e.target;
   const clickedSquareNumber = parseInt(
     clickedSquare.getAttribute('box-number')
@@ -42,7 +44,7 @@ const handleClick = (e) => {
   handleResult();
 };
 // private function if player chooses valid square
-function handlePlay(clickedElement, squareIndex) {
+const handlePlay = (clickedElement, squareIndex) => {
   gameBoard[squareIndex] = currentPlayer;
   clickedElement.innerText = currentPlayer;
   //switch
@@ -51,9 +53,9 @@ function handlePlay(clickedElement, squareIndex) {
   } else {
     clickedElement.style.color = '#0B05A0';
   }
-}
+};
 // private function to check if game is finished and transition player turns
-function handleResult() {
+const handleResult = () => {
   let gameWon = false;
   for (let i = 0; i <= 7; i++) {
     let a = gameBoard[winningCombos[i][0]];
@@ -82,13 +84,13 @@ function handleResult() {
     return;
   }
   changePlayer();
-}
+};
 // update message color to correspond with upcoming player turn
-function changeMessageColor(color) {
+const changeMessageColor = (color) => {
   gameStatusMessage.style.color = '#' + color;
-}
+};
 // change to next player's turn after move
-function changePlayer() {
+const changePlayer = () => {
   currentPlayer =
     currentPlayer === player1_Symbol ? player2_Symbol : player1_Symbol;
   gameStatusMessage.innerText = currentPlayerTurn();
@@ -97,17 +99,17 @@ function changePlayer() {
   } else {
     changeMessageColor('0B05A0');
   }
-}
+};
 
-function restartGame() {
-  gameBoard = ['', '', '', '', '', '', '', '', ''];
+const restartGame = () => {
+  gameBoard = clearBoard;
   document
     .querySelectorAll('.board-square')
     .forEach((square) => (square.innerText = ''));
   gameActive = true;
   currentPlayer = player1_Symbol;
   gameStatusMessage.innerText = currentPlayerTurn();
-}
+};
 
 //
 document
