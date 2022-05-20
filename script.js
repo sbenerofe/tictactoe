@@ -10,7 +10,7 @@ const player1_Symbol = '🍅';
 const player2_Symbol = '🌵';
 let currentPlayer = player1_Symbol;
 const clearBoard = ['', '', '', '', '', '', '', '', ''];
-let gameBoard = clearBoard;
+let gameBoard = clearBoard.slice();
 
 const winningMessage = () => `${currentPlayer} wins!`;
 const tieMessage = "It's a tie";
@@ -102,7 +102,7 @@ const changePlayer = () => {
 };
 
 const restartGame = () => {
-  gameBoard = clearBoard;
+  gameBoard = clearBoard.slice();
   document
     .querySelectorAll('.board-square')
     .forEach((square) => (square.innerText = ''));
