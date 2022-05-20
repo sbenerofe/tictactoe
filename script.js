@@ -11,7 +11,7 @@ let gameModule = (function () {
 
   const winningMessage = () => `${currentPlayer} wins!`;
   const tieMessage = "It's a tie";
-  const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
+  const currentPlayerTurn = () => `${currentPlayer}'s turn`;
   gameStatusMessage.innerText = currentPlayerTurn();
 
   const winningCombos = [
@@ -29,7 +29,7 @@ let gameModule = (function () {
   function handleClick(e) {
     const clickedSquare = e.target;
     const clickedSquareNumber = parseInt(
-      clickedSquare.getAttribute('data-key')
+      clickedSquare.getAttribute('box-number')
     );
 
     if (gameBoard[clickedSquareNumber] !== '' || !gameActive) {
@@ -44,9 +44,9 @@ let gameModule = (function () {
     gameBoard[squareIndex] = currentPlayer;
     clickedElement.innerText = currentPlayer;
     if (currentPlayer === 'X') {
-      clickedElement.style.color = '#219EBC';
+      clickedElement.style.color = '#A090DC';
     } else {
-      clickedElement.style.color = '#FB8500';
+      clickedElement.style.color = '#0B05A0';
     }
   }
   // private function to check if game is finished and transition player turns
@@ -89,9 +89,9 @@ let gameModule = (function () {
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
     gameStatusMessage.innerText = currentPlayerTurn();
     if (currentPlayer === 'X') {
-      changeMessageColor('219EBC');
+      changeMessageColor('A090DC');
     } else {
-      changeMessageColor('FB8500');
+      changeMessageColor('0B05A0');
     }
   }
 
